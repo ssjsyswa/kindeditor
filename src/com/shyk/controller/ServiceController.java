@@ -31,7 +31,7 @@ public class ServiceController {
 	private IndexService  indexService;
 	
 	private String prefix = "D:/";
-	//添加到refundDetail.htm里 
+	//添加到remarkTo.htm里 
 	@RequestMapping("/")
 	public ModelAndView seachList(Model model,HttpServletRequest request) throws Exception{
 	/*	String path = ServiceController.class.getClassLoader().getResource("/").getPath().replace("classes", "Excel");
