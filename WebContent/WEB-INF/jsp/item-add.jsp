@@ -10,17 +10,18 @@
 <script type="text/javascript" charset="utf-8" src="<%=request.getContextPath() %>/js/jquery-easyui-1.4.1/jquery.min.js"></script>
 <div style="padding:10px 10px 10px 10px">
 	<form id="itemAddForm" class="itemForm" method="post">
-	    <table cellpadding="5">
+	<input type="hidden" name="id" value="${data.id }">
+	   <!--  <table cellpadding="5">
 	        <tr>
 	            <td>商品描述:</td>
-	            <td>
-	                <textarea style="width:800px;height:300px;visibility:hidden;" name="desc" >${data }</textarea>
-	            </td>
+	            <td> -->
+	                <textarea style="width:800px;height:300px;visibility:hidden;" name="desc" id="tex">${data.desc}</textarea>
+	           <!--  </td>
 	        </tr>
-	    </table>
+	    </table> -->
 	    <!-- <input type="hidden" name="itemParams"/> -->
 	</form>
-	<div style="display:none;">${data}</div>
+	<%-- <div style="display:none;">${data.desc}</div> --%>
 	<div style="padding:5px">
 	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">提交</a>
 	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">重置</a>
@@ -28,12 +29,12 @@
 </div>
 <script type="text/javascript">
 	var itemAddEditor ;
+	/* var c = ${data.desc } */
 	 
 	//页面初始化完毕后执行此方法
 	$(function(){
 		
-		 var desc =  $("#ht").text();
-		  alert(desc)
+		 /* var desc =  $("#ht").text(); */
 		//创建富文本编辑器
 		
 		itemAddEditor = TAOTAO.createEditor("#itemAddForm [name=desc]");
@@ -41,13 +42,13 @@
 	});
 	//提交表单
 	function submitForm(){
-		alert($("#itemAddForm").serialize());
+		/* alert($("#itemAddForm").serialize()); */
 		//同步文本框中的商品描述
 		itemAddEditor.sync();
 		$.post(getProject()+"/item/save",$("#itemAddForm").serialize(), function(data){
 			
 			if(data.status == 200){
-				$.messager.alert('提示','新增商品成功!');
+				/* $.messager. */alert('提交成功!');
 			}
 		});
 	}
