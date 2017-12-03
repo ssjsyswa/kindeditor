@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -20,9 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.shyk.pojo.PicUrl;
+import com.shyk.pojo.DemoBean;
 import com.shyk.service.IndexService;
-import com.shyk.util.JSONUtils;
 import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.common.utils.JsonUtils;
 @Controller
@@ -47,7 +45,10 @@ public class ServiceController {
 		map.put("data", data);*/
 		ModelAndView  modelAndView = new ModelAndView( );
 		modelAndView.setViewName("/item-add");
-		modelAndView.addObject("data", "<img src=\"/Big_Screen_Web/img/1sda.jpg\" alt=\"\" />让他引入让他引入同意");
+		DemoBean demoBean = new DemoBean();
+		demoBean.setId(33+"");
+		demoBean.setDesc("<img src=\"http://localhost:8080/file/1sda.png\" alt=\"\" />让他引入让他引入同意");
+		modelAndView.addObject("data", demoBean);
 //		map.put("data", "<img src=\"/Big_Screen_Web/img/1sda.jpg\" alt=\"\" />让他引入让他引入同意");
 		return modelAndView;
 	}
@@ -114,9 +115,11 @@ public class ServiceController {
 	
 	@RequestMapping("/item/save")
 	@ResponseBody
-	public TaotaoResult submit(String desc){
+	public TaotaoResult submit(DemoBean bean ){
 		 TaotaoResult result =new TaotaoResult();
+		 //存入数据库
 		 //这里写的不好,catch 不到
+		 System.out.println(bean.getDesc());
 		try{
 		
 		 result.setStatus(200);
