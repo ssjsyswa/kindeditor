@@ -3,9 +3,12 @@ package com.shyk.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -28,7 +31,7 @@ public class ServiceController {
 	private IndexService  indexService;
 	
 	private String prefix = "D:/";
-	
+	//添加到refundDetail.htm里 
 	@RequestMapping("/")
 	public ModelAndView seachList(Model model,HttpServletRequest request) throws Exception{
 	/*	String path = ServiceController.class.getClassLoader().getResource("/").getPath().replace("classes", "Excel");
@@ -48,6 +51,22 @@ public class ServiceController {
 //		map.put("data", "<img src=\"/Big_Screen_Web/img/1sda.jpg\" alt=\"\" />让他引入让他引入同意");
 		return modelAndView;
 	}
+	public  String getRandomFileName() {  
+		  
+        SimpleDateFormat simpleDateFormat;  
+  
+        simpleDateFormat = new SimpleDateFormat("yyyyMMdd");  
+  
+        Date date = new Date();  
+  
+        String str = simpleDateFormat.format(date);  
+  
+        Random random = new Random();  
+  
+        int rannum = (int) (random.nextDouble() * (99999 - 10000 + 1)) + 10000;// 获取5位随机数  
+  
+        return rannum + str;// 当前时间  
+    }  
 	
 	
 	@RequestMapping("/pic/upload")
